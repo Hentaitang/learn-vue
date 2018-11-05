@@ -7,9 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">{{date}}</div>
+    <div id="app">
+        {{date}} <br><hr>
+        {{date | splitDate}}
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
+        function newDate(value){
+            return value > 10 ? value : '0' + value
+        }
         var app = new Vue({
             el: '#app',
             data: {
@@ -19,6 +25,23 @@
                 this.timer = setInterval(()=>{
                     this.date = new Date()
                 },1000)
+            },
+            filters: {
+                splitDate(value){
+                    let dataTime = typeof value === 'object' ? value : new Date(value)
+                    let year = value.getFullYear()
+                    let month = newDate(value.getMonth() +1 )
+                    let date = newDate(value.getDate())
+                    let hour = newDate(value.getHours())
+                    let min = newDate(value.getMinutes())
+                    let sec = newDate(value.getSeconds())
+                    return year + '年' + month + '月' + date + '日' + '   ' + hour + '时' + min + '分' + sec + '秒'
+                }
+            },
+            beforeDestroy: function(){
+                if(this.timer){
+                    clearInterval(this.timer)
+                }
             }
         })
     </script>
