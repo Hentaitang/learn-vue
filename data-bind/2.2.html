@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .transGreen{
+            color: green;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
     <div id="app">
         {{date}} <br><hr>
-        {{date | splitDate}}
+        {{date | splitDate}} <br><hr>
+        {{msg}}
+        <p v-html="htm"></p>
+        <p :class="transGreen">动态绑定属性（任意属性均可）</p>
+        {{number}}
+        <button @click="count">+1</button> <br>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
@@ -19,7 +29,16 @@
         var app = new Vue({
             el: '#app',
             data: {
-                date: new Date()
+                date: new Date(),
+                msg: '渲染文本到页面',
+                htm: '<p style="color: red;">渲染HTML到页面</p>',
+                transGreen: 'transGreen',
+                number: 1
+            },
+            methods: {
+                count(){
+                this.number = this.number + 1
+                }
             },
             mounted: function(){
                 this.timer = setInterval(()=>{
