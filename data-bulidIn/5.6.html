@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>修饰符</title>
+</head>
+<body>
+    <div id="app">
+        stop用法：
+        <div @click="clickDiv" style="backgroundColor: blue; height: 100px; width: 100px">
+            <button @click.stop="clickBut">点击</button>
+        </div>
+        <hr>
+        self用法：
+        <div @click.self="clickdiv" style="backgroundColor: pink; height: 100px; width: 100px">
+            <button @click="clickbut">点击</button>
+        </div>
+        <hr>
+        prevent用法：
+        <form action="" @submit.prevent="submitUp">
+            <button>提交表单</button>
+        </form>
+        <hr>
+        once用法：<br>
+        <button @click="gogogo">执行无数次</button>
+        <button @click.once="gogogo">执行一次</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                clickDiv(){
+                    alert('在div上点击')
+                },
+                clickBut(){
+                    alert('在button上点击')
+                },
+                clickdiv(){
+                    alert('在div上点击')
+                },
+                clickbut(){
+                    alert('在button上点击')
+                },
+                submitUp(){
+                    console.log('表单上传')
+                },
+                gogogo(){
+                    alert('你要执行多少次？')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

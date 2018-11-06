@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组更新、过滤与排序</title>
+</head>
+<body>
+    <div id="app">
+        <p v-for="fruit in fruits">{{fruit}}</p>
+        <button @click="sortList">点我排序</button>
+        <button @click="reversed">点我翻转</button>
+        <hr>
+        过滤：{{filterthing}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                fruits: ['apple', 'banana', 'pie', 'orange', 'peach']
+            },
+            computed: {
+                filterthing(){
+                    return this.fruits.filter((value)=>{
+                        return value.match(/ana/)
+                    })
+                }
+            },
+            methods: {
+                sortList(){
+                    this.fruits.sort((a, b)=>{
+                        return a.length - b.length
+                    })
+                },
+                reversed(){
+                    this.fruits.reverse()
+                }
+            }
+        })
+
+        Vue.set(app.fruits, 3, 'car')
+    </script>
+</body>
+</html>

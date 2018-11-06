@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <title>基本指令</title>
+</head>
+<body>
+    <div id="app">
+        v-cloak用法:
+        <p v-cloak>{{msg}}</p>
+        v-once用法:
+        <p v-once>{{msg2}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // while(true){}
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '村里有个姑娘叫小芳',
+                msg2: '长得美丽又善良'
+            }
+        })
+    </script>
+</body>
+</html>

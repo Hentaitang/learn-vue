@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染指令</title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="3 > 1">apple</p>
+        <p v-else-if="5 < 3">banana</p>
+        <p v-else>pineapple</p>
+        <p v-show="3 < 1"> 展示内容 </p>
+        <hr>
+        按钮切换
+        <div v-if="title">
+            用户名：
+            <input type="text" placeholder="用户名" v-model="username">
+        </div>
+        <div v-else>
+            密码：
+            <input type="text" placeholder="密码" v-model="password">
+        </div>
+        <button @click="change">点我切换</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                title: true,
+                username: '',
+                password: ''
+            },
+            methods: {
+                change(){
+                    this.title = !this.title
+                }
+            }
+        })
+    </script>
+</body>
+</html>

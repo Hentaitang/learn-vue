@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染指令</title>
+</head>
+<body>
+    <div id="app">
+        v-for:  <br>
+        (1)遍历多个对象<br>
+        学习vue的方法是
+        <ul>
+            <li v-for="study in studys">{{study.name}}</li>
+        </ul>
+        带索引的写法
+        <ul>
+            <li v-for="(study, index) in studys">{{index}}-----{{study.name}}</li>
+        </ul>
+        (2)遍历一个对象多个属性
+        <div v-for="(girl, key, index) in nvshen">第{{index + 1}}位---key为{{key}}---{{girl}}</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                studys: [
+                    {name: '多思考'},
+                    {name: '多练习'},
+                    {name: '听老张讲课'}
+                ],
+                nvshen: {
+                    girl1: '新垣结衣',
+                    girl2: '长泽雅美',
+                    girl3: '我老婆'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
