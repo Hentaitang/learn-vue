@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div id="app">
+    FirstName: <input type="text" v-model="firstName"> <br>
+    LastName: <input type="text" v-model="lastName"> <br>
+    computed 计算属性: {{fullName}} <br>
+    watch 监听器: {{FullName}}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      firstName: '张',
+      lastName: '三丰',
+      FullName: ''
+    },
+    computed: {
+      fullName(){
+        return this.firstName + ' ' + this.lastName
+      }
+    },
+    watch: {
+      firstName(newName, oldName){
+        this.FullName = newName + ' ' + this.lastName
+      },
+      lastName(newName, oldName){
+        this.FullName = this.firstName + ' ' + newName
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{text}} <br>
+        {{text.split(',').reverse().join(',')}} <br>
+        {{reverseText}} <br><hr>
+        计算属性的缓存： <br>
+        {{now}} <br>
+        通关methods: <br>
+        {{thisTime()}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text : '123,456,789'
+            },
+            computed: {
+                reverseText(){
+                    return this.text.split(',').reverse().join(',')
+                },
+                now(){
+                    return Date.now()
+                }
+            },
+            methods: {
+                thisTime(){
+                    return Date.now()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
