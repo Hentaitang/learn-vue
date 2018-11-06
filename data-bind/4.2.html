@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .active{
+            background-color: red;
+            height: 40px;
+            width: 40px;
+        }
+        .border{
+            border: 10px solid green;
+        }
+        .color{
+            color: red;
+            height: 50px;
+            width: 50px;
+        }
+        .background{
+            background-color: green;
+        }
+        .bgRed{
+            background-color: pink;
+        }
+        .bgBlue{
+            background-color: #4C8BF5;
+        }
+        .height{
+            height: 40px;
+            width: 40px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        对象语法：
+        <div :class="{active: isActive, border: isBorder}"></div>
+        数组语法：
+        <div :class="[color, backGround]">看看我</div> 
+        数组对象混用：
+        <div :class="[{active: isActive}, height]"></div>
+        <hr>
+        按钮: <br>
+        <button :class="{bgRed: isbgRed, bgBlue: isbgBlue}" @click="changeBg">点我换颜色</button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                isBorder: true,
+                color: 'color',
+                backGround: 'background',
+                isbgRed: true,
+                isbgBlue: false,
+                height: 'height'
+            },
+            methods: {
+                changeBg(){
+                    this.isbgRed = !this.isbgRed
+                    this.isbgBlue = !this.isbgBlue
+                }
+            }
+        })
+    </script>
+</body>
+</html>

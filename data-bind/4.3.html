@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="{'color': color, 'font-size': fontSize}">内联样式对象语法</div>
+        <div :style="[style1]">内联样式数组语法</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                color: 'red',
+                fontSize: '20px',
+                style1: {
+                    fontSize: '20px',
+                    color: 'green'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
