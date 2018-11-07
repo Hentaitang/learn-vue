@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        input和textarea用法<br>
+        <input type="text" v-model="textInput"><br>
+        {{textInput}} <br>
+        <textarea name="" id="" cols="30" rows="3" v-model="areaInput">我是初始化输入</textarea><br>
+        {{ areaInput }} <br><hr>
+        单选框: <br>
+        单个单选框--- <input type="radio" name="" id="" :checked="oneRadio"> <br>
+        多个单选框 --- <br>
+        狗蛋：<input type="radio" name="" value="狗蛋" id="" v-model="checked"> <br>
+        翠花：<input type="radio" name="" value="翠花" id="" v-model="checked"> <br>
+        猫蛋：<input type="radio" name="" value="猫蛋" id="" v-model="checked"> <br>
+        现在选中的是：------ {{checked}} <br><hr>
+        复选框： <br>
+        单个复选框---v-bind：<input type="checkbox" name="" id="" :checked="box1">
+        ---v-model: <input type="checkbox" v-model="box2"> <br>
+        多个复选框：<br>
+        狗蛋：<input type="checkbox" name="" value="狗蛋" id="" v-model="checkBox"> <br>
+        翠花：<input type="checkbox" name="" value="翠花" id="" v-model="checkBox"> <br>
+        猫蛋：<input type="checkbox" name="" value="猫蛋" id="" v-model="checkBox"> <br>
+        现在选中的是：------ {{checkBox}} <br><hr>
+        单选的下拉框：
+        <select name="" id="" v-model="selected">
+            <option value="狗蛋">狗蛋</option>
+            <option value="翠花">翠花</option>
+            <option value="猫蛋">猫蛋</option>
+        </select>
+        ------------现在选中的是 {{selected}} <br>
+        <br><br><br>
+        多选的下拉框：
+        <select name="" id="" v-model="selectedAll" multiple>
+            <option value="狗蛋">狗蛋</option>
+            <option value="翠花">翠花</option>
+            <option value="猫蛋">猫蛋</option>
+        </select>
+        ------------现在选中的是 {{selectedAll}} <br>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                textInput: '',
+                areaInput: '',
+                oneRadio: true,
+                checked: '',
+                box1: true,
+                box2: true,
+                checkBox: [],
+                selected: '',
+                selectedAll: []
+            }
+        })
+    </script>
+</body>
+</html>
