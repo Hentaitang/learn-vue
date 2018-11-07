@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>奇淫技巧</title>
+</head>
+<body>
+    <div id="app">
+        <app-component></app-component>
+        <button @click="plus">{{count}}</button>
+        <button @click="plus">{{count}}</button>
+        <hr>
+        <app-button></app-button>
+        <app-button></app-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            components: {
+                'app-component': {
+                    template: '<div>我是app中局部注册的组件</div>'
+                },
+                'app-button': {
+                    template: '<button @click="countPlus">{{count}}</button>',
+                    data(){
+                        return {
+                            count: 0
+                        }
+                    },
+                    methods: {
+                        countPlus(){
+                            this.count ++
+                        }
+                    }
+                }
+            },
+            methods: {
+                plus(){
+                    this.count ++
+                }
+            }
+        })
+    </script>
+</body>
+</html>

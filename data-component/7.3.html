@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在父组件里向子组件传递消息</title>
+</head>
+<body>
+    <div id="app" style="border: 2px solid green; height: 500px; text-align: center;">
+        <h5>我是父组件</h5>
+        <p style="border: 2px solid red; height: 80px; text-align: center;">{{msg}}</p>
+        <hr>
+        <app-component Msg="今天的月亮真圆"></app-component>
+        <hr>
+        把父组件输入的信息传给子组件 <br>
+        <input type="text" v-model="textMsg"> <br>
+        <input-component :text="textMsg"></input-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '我是来自父组件的内容',
+                textMsg: ''
+            },
+            components: {
+                'app-component': {
+                    props: ['Msg'],
+                    template: '<p style="border: 2px solid red; height: 80px; text-align: center;">{{Msg}}</p>'
+                },
+                'input-component': {
+                    props: ['text'],
+                    template: '<p style="border: 2px solid red; height: 80px; text-align: center;">{{text}}</p>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
