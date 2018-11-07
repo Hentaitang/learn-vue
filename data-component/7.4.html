@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>单向数据流</title>
+</head>
+<body>
+    <div id="app">
+        <my-component :msg="msg"></my-component>
+        <hr>
+        <input type="text" v-model="width">
+        <input-component :width="width"></input-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            props: ['msg'],
+            template: '<h4>{{count}}</h4>',
+            data(){
+                return {
+                    count: this.msg
+                }
+            }
+        })
+
+        Vue.component('input-component', {
+            props: ['width'],
+            template: '<div :style="style"></div>',
+            data(){
+                return {
+                    
+                }
+            },
+            computed: {
+                style(){
+                    return {
+                        width: this.width + 'px',
+                        background: 'red',
+                        height: '30px'
+                    }
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '我是父组件传递的数据',
+                width: 0
+            }
+        })
+    </script>
+</body>
+</html>
