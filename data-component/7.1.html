@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件的使用方法</title>
+</head>
+<body>
+    <div id="app" style="border: 2px solid red; margin-bottom: 10px;">
+        <my-component></my-component>   
+    </div>
+
+    <div id="bpp" style="border: 2px solid green; margin-bottom: 10px;">
+        <bpp-component></bpp-component>
+        <my-component></my-component>   
+    </div>
+    <div id="cpp" style="border: 2px solid blue">
+        <table>
+            <tbody is="cpp-component"></tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '<div>我是组件全局注册的案例</div>'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+
+        var bpp = new Vue({
+            el: '#bpp',
+            data: {},
+            components: {
+                'bpp-component': {
+                    template: '<div>我是组件局部注册的案例</div>'
+                }
+            }
+        })
+
+        var cpp = new Vue({
+            el: '#cpp',
+            data: {},
+            components: {
+                'cpp-component': {
+                    template: '<div>我是组件在table中的案例</div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
