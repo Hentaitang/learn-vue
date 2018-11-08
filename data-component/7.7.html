@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>动态组件使用</title>
+</head>
+<body>
+    <div id="app">
+        <component :is="com"></component>
+        <button @click="change('A')">第1句</button>
+        <button @click="change('B')">第2句</button>
+        <button @click="change('C')">第3句</button>
+        <button @click="change('D')">第4句</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('comA', {
+            template: '<p>白日依山尽</p>'
+        })
+
+        Vue.component('comB', {
+            template: '<p>黄河如海流</p>'
+        })
+
+        Vue.component('comC', {
+            template: '<p>欲穷千里目</p>'
+        })
+
+        Vue.component('comD', {
+            template: '<p>更上一层楼</p>'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                com: 'comA'
+            },
+            methods: {
+                change(value){
+                    this.com = 'com' + value
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

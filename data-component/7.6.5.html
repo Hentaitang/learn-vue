@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>作用域插槽及访问slot</title>
+</head>
+<body>
+    <div id="app">
+        <my-component>
+            <p slot="a" slot-scope="aaa">
+                {{aaa.text}}
+                {{aaa.sss}}
+            </p>
+        </my-component>
+        <hr>
+        <name-component>
+            <h3 slot="header"><span>我是标题</span></h3>
+            <p>我是内容</p>
+            <p>我是第二行内容</p>
+            <p slot="footer">我是底部</p>
+        </name-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: ' <div>\
+                            <slot name="a" text="我是来自子组件的数据" sss="afcawefcwaef"></slot>\
+                        </div>'
+        })
+
+        Vue.component('name-component', {
+            template: ' <div>\
+                            <div class="header">\
+                                <slot name="header"></slot>\
+                            </div>\
+                            <div class="container">\
+                                <slot></slot>\
+                            </div>\
+                            <div class="footer">\
+                                <slot name="footer"></slot>\
+                            </div>\
+                        </div>',
+            mounted(){
+                //实例载入并挂载完成
+                let header = this.$slots.header
+                let text = header[0].elm.innerText
+                let html = header[0].elm.innerHTML
+                console.log(text)
+                console.log(html)
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>
