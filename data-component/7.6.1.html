@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>子组件传给父组件</title>
+</head>
+<body>
+    <div id="app">
+        您现在的银行卡余额为{{count}} <br>
+        <my-button @change="total" :count="count"></my-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-button', {
+            props: ['count'],
+            template: `<div>
+                        <button @click="plus">+1000</button>
+                        <button @click="reduce">-1000</button>
+                        </div>`,
+            data(){
+                return {
+                    fatherCount: this.count
+                }
+            },
+            methods: {
+                plus(){
+                    this.fatherCount += 1000
+                    this.$emit('change', this.fatherCount)
+                },
+                reduce(){
+                    this.fatherCount -= 1000
+                    this.$emit('change', this.fatherCount)
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 10000
+            },
+            methods: {
+                total(total){
+                    this.count = total
+                }
+            }
+        })
+    </script>
+</body>
+</html>

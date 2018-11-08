@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>组件使用v-model</title>
+</head>
+<body>
+    <div id="app">
+        你现在的银行卡余额为 {{total}} <br>
+        <my-button :total="total" v-model="total"></my-button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-button', {
+            props: ['total'],
+            template: ` <div>
+                            <button @click="plus">+1000</button>
+                            <button @click="reduce">-1000</button>
+                        </div>`,
+            data(){
+                return {
+                    count: this.total
+                }
+            },
+            methods: {
+                plus(){
+                    this.count += 1000
+                    this.$emit('input', this.count)
+                },
+                reduce(){
+                    this.count -= 1000
+                    this.$emit('input', this.count)
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            }
+        })
+    </script>
+</body>
+</html>
