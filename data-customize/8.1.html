@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div id="app">
+        获取焦点：<input type="text" v-focus>
+        <br>
+        <div v-cuihua:goudan.a.b.c="abc"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.directive('focus', {
+            //指令的选项,插入到父节点的时候就调用
+            inserted(el){
+                el.focus()
+            }
+        })
+
+        Vue.directive('cuihua', {
+            //指令的选项,插入到父节点的时候就调用
+            bind(el,binding){
+                el.innerHTML = 
+                'name' + '----' + binding.name + '<br>' +
+                'value' + '----' + binding.value + '<br>' +
+                'expression' + '----' + binding.expression + '<br>' +
+                'argument' + '----' + binding.arg + '<br>' +
+                'modifiers' + '----' + JSON.stringify(binding.modifiers) + '<br>'
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                abc: '我是value'
+            }
+        })
+    </script>
+</body>
+</html>
