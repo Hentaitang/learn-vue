@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>第一个参数</title>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            render(createElement){
+                // return createElement('h1')
+                // return createElement({
+                //     template: '<div>锄禾日当午</div>'
+                // })
+                let fun = function(){
+                    return {
+                        template: '<div>锄禾日当午</div>'
+                    }
+                }
+                return createElement(fun())
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+</html>

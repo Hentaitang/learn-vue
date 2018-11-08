@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>render函数初步了解</title>
+</head>
+<body>
+    <div id="app">
+        <my-component :level="level">
+            我是蜡笔小新
+        </my-component>
+    </div>
+
+    <!-- <template id="tem">
+        <div>
+            <h1 v-if="level===1">
+                <slot></slot>
+            </h1>
+            <h2 v-if="level===2">
+                <slot></slot>
+            </h2>
+            <h3 v-if="level===3">
+                <slot></slot>
+            </h3>
+        </div>
+    </template> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        //使用vue组件定义
+        // Vue.component('my-component', {
+        //     props: ['level'],
+        //     template: '#tem'
+        // })
+
+        //使用render函数进行定义组件
+        Vue.component('my-component', {
+            render(createElement){
+                return createElement('h'+this.level, this.$slots.default)
+            },
+            props: ['level']
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                level: 2
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+        }
+        #app{
+            width: 600px;
+            height: 300px;
+            border: 2px solid black;
+        }
+    </style>
+    <title>在render函数中使用props传递数据</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="changeImg">点我切换</button> ----{{msg}} <br>
+        <my-component :msg="msg"></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            props: ['msg'],
+            render(createElement){
+                let imgSrc
+                if(this.msg){
+                    imgSrc = 'https://hentaitang.github.io/resume/img/works/canvas-demo.jpg'
+                }else{
+                    imgSrc = 'https://hentaitang.github.io/resume/img/works/nav-page.jpg'
+                }
+                return createElement('img', {
+                    style: {
+                        width: '400px'
+                    },
+                    attrs: {
+                        src: imgSrc
+                    }
+                })
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: false
+            },
+            methods: {
+                changeImg(){
+                    this.msg = !this.msg
+                }
+            }
+        })
+    </script>
+</body>
+</html>
